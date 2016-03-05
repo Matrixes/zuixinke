@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}醉心客 - 确认帐号{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>
+        你好, {{ current_user.username }}!
+    </h1>
+    <h3>您的账户还没有确认啊</h3>
+    <p>
+        确认之后才可以使用更多功能哦！
+    </p>
+    <p>
+        <a href="{{ url_for('auth.resend_confirmation') }}">重新发送邮件</a>
+    </p>
+</div>
+{% endblock %}

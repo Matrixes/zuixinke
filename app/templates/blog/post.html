@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}醉心客 - {{ post.title }}{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_index.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+    <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li><a href="/blog">博客</a></li>
+        <li class="active">{{ post.title }}</li>
+    </ol>
+
+<div class="col-md-12">
+	<h2 class="text-center text-primary">
+		{{ post.title }}
+	</h2>
+
+            <!--
+            <p class="lead">
+                by
+                <a href="#">
+                    {{ post.author.name}}
+                </a>
+            </p>
+            -->
+        <p class="lead">
+                <small>
+                by
+                <a href="{{ url_for('main.user',username=post.author.username) }}">
+                    <small>{{ post.author.name}}</small>
+                </a>
+                </small>
+        </p>
+		<p>
+			<span class="glyphicon glyphicon-time"></span>
+			{{ post.timestamp}}
+		</p>
+		<!--
+        <img class="img-responsive" src="{{ url_for('static',filename='16.ico') }}">
+        -->
+<div id="post_index">
+		<h3>
+			摘要
+		</h3>
+		<p>
+			{% if post.summary_html %}
+				{{ post.summary_html | safe }}
+			{% else %}
+				{{ post.summary }}
+			{% endif %}
+		</p>
+        <hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+		<h3>
+			正文
+		</h3>
+		<p>
+			{% if post.body_html %}
+				{{ post.body_html | safe }}
+			{% else %}
+				{{ post.body }}
+			{% endif %}
+		</p>
+		<a class="btn btn-primary" href="{{ url_for('blog.edit',id=post.id) }}" style="float:right">
+			编辑
+			<span class="glyphicon glyphicon-step-forward"></span>
+		</a>
+	</div>
+	<hr>
+</div>
+
+
+<!-- 多说评论框 start -->
+<div class="ds-thread col-md-12" data-thread-key="{{ post.id }}" data-title="{{ post.title}}" data-url="/post/{{ post.id}}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zuixinke"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+{% endblock%}
+
+
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}醉心客 - 登录 {% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>登录</h1>
+</div>
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+<div style="clear: both;padding-top: 20px;padding-left: 20px;">
+    <p><a href="{{ url_for('auth.password_reset_request') }}">忘记密码</a>.</p>
+    <p><a href="{{ url_for('auth.register') }}">注册帐号</a>.</p>
+</div>
+<!--
+<div class="container">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">登录</h2>
+        <label for="inputEmail" class="sr-only">登录邮箱</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="邮箱" required autofocus>
+        <label for="inputPassword" class="sr-only">登录密码</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me">记住我
+            </label>
+        </div>
+        <div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        </div>
+    </form>
+</div>
+-->
+{% endblock %}

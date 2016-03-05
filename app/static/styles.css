@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    padding: 0;
+    margin: 0;
+}
+.navbar-brand {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#navbar li{
+    font-size: medium;
+}

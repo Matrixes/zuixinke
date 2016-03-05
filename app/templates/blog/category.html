@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}醉心客 - {{ posts.category }}{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_index.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+    <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li><a href="/blog">博客</a></li>
+        <li class="active">标签-{{ category.tag }}</li>
+    </ol>
+
+<div class="container">
+    <div class="row">
+        {% for post in posts%}
+        <div class="col-md-9">
+            <h2>
+                <a href="{{ url_for('blog.post',id=post.id) }}">{{ post.title }}</a>
+            </h2>
+            <div  id="post_index">
+            <p class="lead">
+                <small>
+                by
+                <a href="{{ url_for('main.user',username=post.author.username) }}">
+                    <small>{{ post.author.name}}</small>
+                </a>
+                </small>
+            </p>
+            <p>
+                <span class="glyphicon glyphicon-time"></span>
+                {{ post.timestamp}}
+            </p>
+            <!--
+            <img class="img-responsive" src="{{ url_for('static',filename='16.ico') }}">
+            -->
+            <p>
+                {% if post.summary_html %}
+                    {{ post.summary_html | safe }}
+                {% else %}
+                    {{ post.summary }}
+                {% endif %}
+            </p>
+
+                <a class="btn btn-default btn-sm" href="{{ url_for('blog.category',id=post.category.id) }}">
+                    <span class="glyphicon glyphicon-paperclip"></span>
+                    {{ post.category.tag  }}
+                </a>
+
+            <a class="btn btn-primary" href="{{ url_for('blog.post',id=post.id) }}" style="float:right">
+                更多
+                <span class="glyphicon glyphicon-hand-right"></span>
+            </a>
+            </div>
+
+            <hr />
+            <hr />
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- Blog Sidebar Widgets Column -->
+<div class="col-md-3 siderbar">
+
+    <!-- Blog Categories Well -->
+    <div class="well">
+        <h4>标签</h4>
+        <div class="row">
+            <div class="col-lg-10">
+                {{ category.tag }}
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+</div>
+ <!-- /.row -->
+
+
+
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, 'blog.category') }}
+</div>
+{% endif %}
+
+
+
+
+{% endblock %}

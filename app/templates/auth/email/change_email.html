@@ -1,0 +1,8 @@
+<p>{{ user.username }}, 您好:</p>
+<p>下面的链接在一个小时内有效...</p>
+<p><a href="{{ url_for('auth.change_email', token=token, _external=True) }}">点此修改邮箱</a>.</p>
+<p>您也可以将下面的一长串字符复制道浏览器的地址栏:</p>
+<p>{{ url_for('auth.change_email', token=token, _external=True) }}</p>
+<p>祝您身体健康,天天好心情！</p>
+<p>小站：醉心客</p>
+<p><small>注意：不要回复这个邮件哦,小醉很难查看到的</small></p>

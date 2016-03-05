@@ -1,0 +1,14 @@
+.img-rounded {
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.profile-header {
+    margin-left: 100px;
+    float: left;
+}
+
+.profile-header p {
+    font-size: 15px;
+}
