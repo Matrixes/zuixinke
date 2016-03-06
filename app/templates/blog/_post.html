@@ -1,60 +1,45 @@
-<div class="container"">
-    <div class="row">
-        {% for post in posts%}
-        <div class="col-md-9">
-            <!--
-            <h1 class="page-header">
-                博客
-                <small>侵权了吗？</small>
-            </h1>
-            -->
-
+<div class="row">
+    {% for post in posts%}
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 index_post">
             <h2>
                 <a href="{{ url_for('blog.post',id=post.id) }}">{{ post.title }}</a>
             </h2>
-            <div  id="post_index">
-            <p class="lead">
+            <p class="lead text-right time_author">
+                <span class="glyphicon glyphicon-time"></span> {{ post.timestamp}}
+                &nbsp;&nbsp;
                 <small>
-                by
-                <a href="{{ url_for('main.user',username=post.author.username) }}">
-                    <small>{{ post.author.name}}</small>
-                </a>
+                    by
+                    <a href="{{ url_for('main.user',username=post.author.username) }}">
+                        {{ post.author.name}}
+                    </a>
                 </small>
             </p>
-            <p>
-                <span class="glyphicon glyphicon-time"></span>
-                {{ post.timestamp}}
-            </p>
-            <!--
+
+            <!-- 这里还可以嵌套格图片
             <img class="img-responsive" src="{{ url_for('static',filename='16.ico') }}">
             -->
-            <p>
+            <div  class="index_summary">
                 {% if post.summary_html %}
                     {{ post.summary_html | safe }}
                 {% else %}
                     {{ post.summary }}
                 {% endif %}
-            </p>
 
-                <a class="btn btn-default btn-sm" href="{{ url_for('blog.category',id=post.category.id) }}">
-                    <span class="glyphicon glyphicon-paperclip"></span>
-                    {{ post.category.tag  }}
-                </a>
+            <hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
 
-            <a class="btn btn-primary" href="{{ url_for('blog.post',id=post.id) }}" style="float:right">
-                更多
-                <span class="glyphicon glyphicon-hand-right"></span>
-            </a>
+                <p>
+                    <a class="btn btn-default" href="{{ url_for('blog.category',id=post.category.id) }}">
+                        <span class="glyphicon glyphicon-paperclip"></span>
+                        {{ post.category.tag  }}
+                    </a>
+                    <a class="btn btn-primary" href="{{ url_for('blog.post',id=post.id) }}" style="float:right">
+                        更多<span class="glyphicon glyphicon-hand-right"></span>
+                    </a>
+                </p>
             </div>
-
-            <hr />
-            <hr />
-
         </div>
         {% endfor %}
-    </div>
 </div>
-
 
 
 

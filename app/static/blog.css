@@ -1,0 +1,109 @@
+.siderbar {
+    position: absolute;
+    top: 120px;
+    right: 0;
+}
+
+.well {
+    padding-bottom: 20px;
+    border:#909090 1px solid;
+    background:#fff;color:#333;filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=10);/*ie*/
+    -moz-box-shadow: 4px 4px 20px #909090;/*firefox*/
+    -webkit-box-shadow: 4px 4px 20px #080808;/*safari或chrome*/
+    box-shadow:4px 4px 20px #909090;/*opera或ie9*/
+    /*
+    for ie: direction 阴影角度 0°为从下往上 顺时针方向 strength 阴影段长度
+
+    第一个参数是x轴阴影段长度 第二个参数是y轴阴影段长度
+    第三个参数是往四周阴影段长度 第四个参数是阴影段颜色
+    */
+}
+
+h1 {
+   font-size: 50px;
+}
+h2 {
+    font-size: 40px;
+
+}
+h3 {
+   font-size: 30px;
+}
+h4 {
+   font-size: 25px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.col-lg-9 h2 a {
+    color: #34495E;
+}
+
+/*路径分页 设置负值抵消container的margin*/
+.lujing{
+    margin-left: -100px
+}
+
+/*把时间戳 作者字体弄小点*/
+.time_author {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.well ul li {
+    font-size: 20px;
+    text-indent: 40px;
+}
+
+
+/*博客首页让每一篇有阴影*/
+.index_post {
+    margin-bottom: 30px;
+    border:#630 1px dashed;
+    background:#fff;color:#333;filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=10);/*ie*/
+    -moz-box-shadow: 4px 4px 20px #909090;/*firefox*/
+    -webkit-box-shadow: 4px 4px 20px #080808;/*safari或chrome*/
+    box-shadow:4px 4px 20px #909090;/*opera或ie9*/
+}
+
+.index_summary {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+
+}
+
+
+
+.index_post h2 a:hover {
+    color: brown;
+}
+
+* a:hover {
+    color: #34495E;
+}
+
+
+
+/*博客正文页*/
+.index_post h2,h3 {
+    color: #34495E;
+}
+
+
+
+
+.duoshuo {
+    margin-bottom: 20px;
+    border:#330 1px solid;
+    background:#fff;color:#333;filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=10);/*ie*/
+    -moz-box-shadow: 4px 4px 20px #909090;/*firefox*/
+    -webkit-box-shadow: 4px 4px 20px #080808;/*safari或chrome*/
+    box-shadow:4px 4px 20px #909090;/*opera或ie9*/
+
+}
+
+

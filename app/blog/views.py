@@ -8,9 +8,8 @@ from . import blog
 from .forms import PostForm
 
 
-@blog.route('/',methods=['GET','POST'])
+@blog.route('/')
 def index():
-
     page = request.args.get('page',1,type=int)
     pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
@@ -55,7 +54,7 @@ def edit(id):
         db.session.add(post)
         db.session.commit()
         flash(u"更改成功")
-        return redirect(url_for(blog.post),id=post.id)
+        return redirect(url_for('blog.post',id=post.id))
     form.title.data = post.title
     form.tag.data = post.category.tag
     form.summary.data = post.summary

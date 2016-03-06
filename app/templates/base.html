@@ -3,6 +3,10 @@
 
 {% block title %}醉心客{% endblock %}
 
+{% block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+{% endblock %}
+
 {% block head %}
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='fav.ico') }}" type="image/x-icon">

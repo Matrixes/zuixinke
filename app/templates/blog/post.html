@@ -4,78 +4,91 @@
 
 {% block head %}
 {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_index.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog.css') }}">
 {% endblock %}
 
 {% block page_content %}
 
-    <ol class="breadcrumb">
-        <li><a href="/">首页</a></li>
-        <li><a href="/blog">博客</a></li>
-        <li class="active">{{ post.title }}</li>
-    </ol>
+<div class="row lujing">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <ol class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/blog">博客</a></li>
+            <li class="active">{{ post.title }}</li>
+        </ol>
+    </div>
+</div>
 
-<div class="col-md-12">
-	<h2 class="text-center text-primary">
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 index_post">
+	<h2 class="text-center">
 		{{ post.title }}
 	</h2>
 
-            <!--
-            <p class="lead">
-                by
-                <a href="#">
-                    {{ post.author.name}}
-                </a>
-            </p>
-            -->
-        <p class="lead">
-                <small>
-                by
-                <a href="{{ url_for('main.user',username=post.author.username) }}">
-                    <small>{{ post.author.name}}</small>
-                </a>
-                </small>
-        </p>
-		<p>
-			<span class="glyphicon glyphicon-time"></span>
-			{{ post.timestamp}}
-		</p>
+	<p class="lead text-right time_author">
+        <span class="glyphicon glyphicon-time"></span> {{ post.timestamp}}
+        &nbsp;&nbsp;
+        <small>
+            by
+            <a href="{{ url_for('main.user',username=post.author.username) }}">
+                {{ post.author.name}}
+            </a>
+        </small>
+    </p>
 		<!--
         <img class="img-responsive" src="{{ url_for('static',filename='16.ico') }}">
         -->
-<div id="post_index">
-		<h3>
-			摘要
+	<div class="post_index">
+		<h3 class="text-right">
+			<span class="glyphicon glyphicon-tree-conifer"></span>
+            <span class="glyphicon glyphicon-tree-conifer"></span>
+             摘要
+            <span class="glyphicon glyphicon-tree-conifer"></span>
+            <span class="glyphicon glyphicon-tree-conifer"></span>
 		</h3>
-		<p>
+
 			{% if post.summary_html %}
 				{{ post.summary_html | safe }}
 			{% else %}
 				{{ post.summary }}
 			{% endif %}
-		</p>
+
         <hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
-		<h3>
-			正文
+		<h3 class="text-right">
+			<span class="glyphicon glyphicon-tree-conifer"></span>
+            <span class="glyphicon glyphicon-tree-conifer"></span>
+             正文
+            <span class="glyphicon glyphicon-tree-conifer"></span>
+            <span class="glyphicon glyphicon-tree-conifer"></span>
 		</h3>
-		<p>
+
 			{% if post.body_html %}
 				{{ post.body_html | safe }}
 			{% else %}
 				{{ post.body }}
 			{% endif %}
-		</p>
-		<a class="btn btn-primary" href="{{ url_for('blog.edit',id=post.id) }}" style="float:right">
-			编辑
-			<span class="glyphicon glyphicon-step-forward"></span>
-		</a>
+
+        <hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+
+        <p>
+            <a class="btn btn-default btn-lg" href="{{ url_for('blog.category',id=post.category.id) }}">
+                <span class="glyphicon glyphicon-paperclip"></span>
+                {{ post.category.tag  }}
+            </a>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('blog.edit',id=post.id) }}" style="float:right">
+                编辑<span class="glyphicon glyphicon-hand-right"></span>
+            </a>
+        </p>
 	</div>
-	<hr>
 </div>
+
+<hr />
+
 
 
 <!-- 多说评论框 start -->
-<div class="ds-thread col-md-12" data-thread-key="{{ post.id }}" data-title="{{ post.title}}" data-url="/post/{{ post.id}}"></div>
+<div class="ds-thread col-md-12 duoshuo" data-thread-key="{{ post.id }}" data-title="{{ post.title}}" data-url="/post/{{ post.id}}"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

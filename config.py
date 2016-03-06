@@ -29,7 +29,6 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = DB_URL + 'min'
 
-
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = DB_URL + 'test'

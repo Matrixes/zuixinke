@@ -5,21 +5,42 @@
 
 {% block head %}
 {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog_index.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blog.css') }}">
 {% endblock %}
 
 {% block page_content %}
 
-    <ol class="breadcrumb">
-        <li><a href="/">首页</a></li>
-        <li class="active">博客</li>
-    </ol>
+<!--路径标签 -->
+<div class="row lujing">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <ol class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li class="active">博客</li>
+        </ol>
+    </div>
+</div>
 
+
+<!--博客首页 base.html中的block page_content外
+已有container,_post.html前自带了class="row"-->
 {% include "blog/_post.html" %}
 
-<!-- Blog Sidebar Widgets Column -->
-<div class="col-md-3 siderbar">
-    <!-- Blog Search Well -->
+
+{% if pagination %}
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <div class="pagination pull-right">
+            {{ macros.pagination_widget(pagination, 'blog.index') }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+<!-- 右侧边栏-->
+<!-- 要不要再加个class=“row”？siderbar时为了设置css让其固定在右上角-->
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 siderbar">
+    <!-- 搜索组件 -->
     <div class="well">
         <h4>搜索</h4>
         <div class="input-group">
@@ -30,27 +51,24 @@
                 </button>
             </span>
         </div>
-    <!-- /.input-group -->
+    <!-- 输入框，具体怎么实现还不会-->
     </div>
-    <!-- Blog Categories Well -->
+
+    <!-- 标签栏-->
     <div class="well">
         <h4>标签</h4>
-        <div class="row">
-            <div class="col-lg-10">
-                <ul class="list-unstyled">
-
-                    {% for category in categories %}
-                    <li>
+        <ul class="list-unstyled">
+            {% for category in categories %}
+                <li>
                     <a href="{{ url_for('blog.category',id=category.id) }}">
                         {{ category.tag }}
-                        </a>
-                    </li>
-                    {% endfor%}
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
+                    </a>
+                </li>
+            {% endfor%}
+        </ul>
     </div>
+
+        <!-- /.row -->
     <!-- Side Widget Well -->
     <div class="well">
         <h4>公告</h4>
@@ -59,12 +77,11 @@
         </p>
     </div>
 </div>
+
+
  <!-- /.row -->
 
-{% if pagination %}
-<div class="pagination">
-    {{ macros.pagination_widget(pagination, 'blog.index') }}
-</div>
-{% endif %}
+
+
 
 {% endblock %}
