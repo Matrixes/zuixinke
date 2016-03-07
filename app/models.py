@@ -138,28 +138,72 @@ class Post(db.Model):
 
 
 	@staticmethod
+	def on_changed_summary(target, value, oldvalue, initiator):
+		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span',
+						'blockquote','em', 'i','strong','li','ol','button',
+						'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
+
+		allowed_styles = [
+			'font','font-size','font-wwight','background-color'
+		]
+
+
+		allowed_attriutes = {
+			'a':['href','title','class'],
+			'img':['src','alt'],
+            'p':['class'],
+            'div':['class'],
+            'h1':['class'],
+            'h2':['class'],
+            'h3':['class'],
+            'h4':['class'],
+            'ul':['class'],
+            'ol':['class'],
+            'li':['class'],
+            'span':['class']
+		}
+		target.summary_html = bleach.linkify(bleach.clean(
+			markdown(value, output_format='html'),
+			tags=allowed_tags, attributes=allowed_attriutes,styles=allowed_styles, strip=True))
+
+
+
+	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
-		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code',
-							'blockquote','em', 'i','strong','li','ol',
+		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span',
+							'blockquote','em', 'i','strong','li','ol','button'
 							'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
+
+		allowed_styles = [
+			'font','font-size','font-wwight','background-color'
+		]
+
+
+		allowed_attriutes = {
+			'a':['href','title','class'],
+			'img':['src','alt'],
+            'p':['class'],
+            'div':['class'],
+            'h1':['class'],
+            'h2':['class'],
+            'h3':['class'],
+            'h4':['class'],
+            'ul':['class'],
+            'ol':['class'],
+            'li':['class'],
+            'span':['class']
+		}
+
 		target.body_html = bleach.linkify(bleach.clean(
 			markdown(value, output_format='html'),
-			tags=allowed_tags, strip=True))
+			tags=allowed_tags, attributes=allowed_attriutes,styles=allowed_styles, strip=True))
 
         		
 
-	@staticmethod
-	def on_changed_summary(target, value, oldvalue, initiator):
-		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code',
-						'blockquote','em', 'i','strong','li','ol',
-						'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
-		target.summary_html = bleach.linkify(bleach.clean(
-			markdown(value, output_format='html'),
-			tags=allowed_tags, strip=True))
 
-
-db.event.listen(Post.body, 'set', Post.on_changed_body)
 db.event.listen(Post.summary, 'set', Post.on_changed_summary)
+db.event.listen(Post.body, 'set', Post.on_changed_body)
+
 
 
 #class Like(db.Model):

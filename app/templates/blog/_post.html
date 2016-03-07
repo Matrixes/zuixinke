@@ -27,15 +27,13 @@
 
             <hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
 
-                <p>
-                    <a class="btn btn-default" href="{{ url_for('blog.category',id=post.category.id) }}">
-                        <span class="glyphicon glyphicon-paperclip"></span>
-                        {{ post.category.tag  }}
-                    </a>
-                    <a class="btn btn-primary" href="{{ url_for('blog.post',id=post.id) }}" style="float:right">
-                        更多<span class="glyphicon glyphicon-hand-right"></span>
-                    </a>
-                </p>
+                <a class="btn btn-default" href="{{ url_for('blog.category',id=post.category.id) }}">
+                    <span class="glyphicon glyphicon-paperclip"></span>
+                    {{ post.category.tag  }}
+                </a>
+                <a class="btn btn-primary" href="{{ url_for('blog.post',id=post.id) }}" style="float:right">
+                    更多<span class="glyphicon glyphicon-hand-right"></span>
+                </a>
             </div>
         </div>
         {% endfor %}
