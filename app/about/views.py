@@ -15,4 +15,4 @@ def index():
 def resume():
     if not current_user.is_authenticated:
         about(403)
-    return render_template('about/resume_2.html')
+    return render_template('about/resume.html')
