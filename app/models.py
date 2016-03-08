@@ -171,7 +171,8 @@ class Post(db.Model):
 
 		allowed_styles = [
 			'font','font-size','font-wight','background-color','border',
-            'text-indent','padding','margin','color','background'
+            'text-indent','padding','margin','color','background','float',
+            'width','height'
 		]
 
 
