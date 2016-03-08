@@ -167,8 +167,8 @@ class Post(db.Model):
 	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
 		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span','hr',
-							'blockquote','em', 'i','strong','li','ol','button'
-							'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
+						'blockquote','em', 'i','strong','li','ol','button',
+						'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
 
 		allowed_styles = [
 			'font','font-size','font-wight','background-color','border',
