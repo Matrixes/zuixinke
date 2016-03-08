@@ -15,7 +15,7 @@ def index():
         page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
     posts = pagination.items
 
-    categories = Category.query.all()
+    categories = Category.query.order_by(Category.tag).all()
 
     return render_template("blog/index.html",
                            posts = posts,
@@ -46,14 +46,29 @@ def edit(id):
     if current_user != post.author:
         abort(403)
     form = PostForm()
+    try:
+        category = Category.query.filter_by(tag = form.tag.data).first()
+        if category is None:
+            category = Category(tag = form.tag.data)
+            db.session.add(category)
+            db.session.commit()
+    # 这个方法并不好，应该自定义个category为None的异常再捕获
+    # 不知为什么第一个tag会提交个null上去
+    except:
+        abort(403)
+
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.category.tag = form.tag.data
-        post.summary = form.summary.data
-        post.body = form.body.data
+        # 不加上下面这句的话，post里的category=category会提示局部变量未定义
+        category = Category.query.filter_by(tag = form.tag.data).first()
+
+        post = Post(title = form.title.data,
+                    summary = form.summary.data,
+                    body = form.body.data,
+                    category = category, #这个地方差点要了我的老命，千万别写成category=form.tag.data
+                    author = current_user._get_current_object())
+
         db.session.add(post)
         db.session.commit()
-        flash(u"更改成功")
         return redirect(url_for('blog.post',id=post.id))
     form.title.data = post.title
     form.tag.data = post.category.tag
