@@ -35,7 +35,7 @@ def category(id):
     # 参数不使用url而是tag的话，模板中url_for('blog.category',tag=category.tag)
     # 会提示缺失tag，搞不懂为什么
     category = Category.query.get_or_404(id)
-    posts = category.posts
+    posts = category.posts.order_by(Post.timestamp.desc())
     return render_template('blog/category.html',category=category,posts=posts)
 
 
