@@ -144,27 +144,22 @@ class Post(db.Model):
 						'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
 
 		allowed_styles = [
-			'font','font-size','font-wwight','background-color'
+			'font','font-size','font-wight','background-color','border',
+            'text-indent','padding','margin','color','background'
 		]
 
 
 		allowed_attriutes = {
-			'a':['href','title','class'],
+			'a':['href','title'],
 			'img':['src','alt'],
-            'p':['class'],
-            'div':['class'],
-            'h1':['class'],
-            'h2':['class'],
-            'h3':['class'],
-            'h4':['class'],
-            'ul':['class'],
-            'ol':['class'],
-            'li':['class'],
-            'span':['class']
+            '*':['class','style']
 		}
 		target.summary_html = bleach.linkify(bleach.clean(
 			markdown(value, output_format='html'),
-			tags=allowed_tags, attributes=allowed_attriutes,styles=allowed_styles, strip=True))
+			tags=allowed_tags,
+			attributes=allowed_attriutes,
+			styles=allowed_styles,
+			strip=True))
 
 
 
@@ -175,28 +170,23 @@ class Post(db.Model):
 							'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
 
 		allowed_styles = [
-			'font','font-size','font-wwight','background-color'
+			'font','font-size','font-wight','background-color','border',
+            'text-indent','padding','margin','color','background'
 		]
 
 
 		allowed_attriutes = {
 			'a':['href','title','class'],
 			'img':['src','alt'],
-            'p':['class'],
-            'div':['class'],
-            'h1':['class'],
-            'h2':['class'],
-            'h3':['class'],
-            'h4':['class'],
-            'ul':['class'],
-            'ol':['class'],
-            'li':['class'],
-            'span':['class']
+            '*':['class','style']
 		}
 
 		target.body_html = bleach.linkify(bleach.clean(
 			markdown(value, output_format='html'),
-			tags=allowed_tags, attributes=allowed_attriutes,styles=allowed_styles, strip=True))
+			tags=allowed_tags,
+			attributes=allowed_attriutes,
+			styles=allowed_styles,
+			strip=True))
 
         		
 
