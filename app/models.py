@@ -139,7 +139,7 @@ class Post(db.Model):
 
 	@staticmethod
 	def on_changed_summary(target, value, oldvalue, initiator):
-		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span',
+		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span','hr',
 						'blockquote','em', 'i','strong','li','ol','button',
 						'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
 
@@ -166,7 +166,7 @@ class Post(db.Model):
 
 	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
-		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span',
+		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code','br','img','span','hr',
 							'blockquote','em', 'i','strong','li','ol','button'
 							'pre','strong','ul','h1','h2','h3','h4','h5','h6','p']
 
