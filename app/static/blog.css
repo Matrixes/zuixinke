@@ -110,4 +110,9 @@ p {
 }
 
 
+pre {
+    border-left: #657aff solid 3px;
+    color: saddlebrown;
+    font-size: 18px;
+}
 
