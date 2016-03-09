@@ -12,27 +12,42 @@
     <img class="img-rounded profile-thumbnail" src="{{ url_for('static', filename='fav.ico') }}">
     <div class="profile-header">
         <h1>{{ user.username }}</h1>
+        <hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+
         {% if user.name or user.location %}
-        <p>
-            {% if user.name %}{{ user.name }}<br>{% endif %}
-            {% if user.location %}
-                居住地： <a href="http://map.baidu.com/?q={{ user.location }}" target="_blank">{{ user.location }}</a><br>
-            {% endif %}
-        </p>
+            <p>
+                {% if user.name %}名 字：{{ user.name }}{% endif %}
+            <p>
+                {% if user.location %}
+                    居住地： <a href="http://map.baidu.com/?q={{ user.location }}" target="_blank">{{ user.location }}</a><br>
+                {% endif %}
+            </p>
         {% endif %}
-        {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-        <hr />
 
-        <p>注册时间： {{ moment(user.member_since).format('L') }}. 最近登录： {{ moment(user.last_seen).fromNow() }}.</p>
+        {% if user.about_me %}
+            <p>
+                简介：{{ user.about_me }}
+            </p>
+        {% endif %}
 
-            {% if user == current_user %}
-            <a class="btn btn-default" href="{{ url_for('main.edit_profile') }}">修改资料</a>
-            {% endif %}
-        </p>
-        <br />
-        <p>
-            <a class="btn btn-default" href="{{ url_for('blog.publish') }}">发表文章</a>
-        </p>
+
+        <p>注册时间： {{ moment(user.member_since).format('L') }} || 最近登录： {{ moment(user.last_seen).fromNow() }}.</p>
+
+        {% if user == current_user %}
+            <a class="btn btn-primary btn-lg" href="{{ url_for('main.edit_profile') }}">修改资料</a>
+
+            <button type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-fire"></span>
+            </button>
+
+            <a class="btn btn-primary btn-lg" href="{{ url_for('blog.publish') }}">发表文章</a>
+        {% endif %}
+
+
+
+
+
+
     </div>
 </div>
 
