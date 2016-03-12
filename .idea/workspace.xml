@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b5baf92-07e1-4439-830a-6269d751b7ac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/blog/post.html" afterPath="$PROJECT_DIR$/app/templates/blog/post.html" />
-    </list>
+    <list default="true" id="0b5baf92-07e1-4439-830a-6269d751b7ac" name="Default" comment="" />
     <ignored path="min.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -107,8 +104,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="53" />
-    <option name="y" value="126" />
+    <option name="x" value="164" />
+    <option name="y" value="110" />
     <option name="width" value="1313" />
     <option name="height" value="744" />
   </component>
@@ -481,7 +478,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="126" width="1313" height="744" extended-state="0" />
+    <frame x="164" y="110" width="1313" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11523283" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
